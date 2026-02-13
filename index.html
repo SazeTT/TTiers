@@ -2,64 +2,82 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>Minecraft Tier Liste</title>
+<title>T-Tier</title>
 <style>
 body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #6a0dad, #9b30ff);
-  color: white;
-  text-align: center;
   margin: 0;
-  padding: 20px;
+  padding: 0;
+  overflow: hidden;
+  background: black;
+  color: white;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
 }
 
 h1 {
-  font-size: 40px;
-  margin-bottom: 30px;
+  font-size: 60px;
+  margin-top: 50px;
+  color: #9b30ff;
+  text-shadow: 0 0 10px #9b30ff;
 }
 
-.tier-box {
-  background: rgba(255,255,255,0.1);
-  margin: 15px auto;
-  padding: 15px;
-  width: 300px;
-  border-radius: 15px;
-  backdrop-filter: blur(10px);
+#profile {
+  margin-top: 20px;
 }
 
-button {
-  padding: 10px 15px;
-  border: none;
-  border-radius: 8px;
+#profile img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid white;
+}
+
+#profile span {
+  display: block;
+  margin-top: 10px;
+  font-size: 24px;
+  color: #ffffff;
+  text-shadow: 0 0 5px #fff;
+}
+
+/* Sterne */
+.star {
+  position: absolute;
   background: white;
-  color: purple;
-  cursor: pointer;
-  font-weight: bold;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+  100% { opacity: 0.3; }
 }
 </style>
 </head>
 <body>
 
-<h1>💜 Minecraft Tier Liste 💜</h1>
+<h1>T-Tier</h1>
 
-<div id="tierContainer"></div>
+<div id="profile">
+  <img src="https://minotar.net/avatar/SPLYX7_/120.png" alt="Minecraft Skin">
+  <span>SPLYX7_</span>
+</div>
 
 <script>
-// Tiers aus localStorage laden
-function loadTiers() {
-  const container = document.getElementById("tierContainer");
-  container.innerHTML = "";
-  let tiers = JSON.parse(localStorage.getItem("tiers")) || [];
-
-  tiers.forEach(tier => {
-    const div = document.createElement("div");
-    div.className = "tier-box";
-    div.innerHTML = "<h3>" + tier.name + "</h3><p>" + tier.description + "</p>";
-    container.appendChild(div);
-  });
+// Sterne generieren
+const starCount = 100;
+for (let i = 0; i < starCount; i++) {
+  let star = document.createElement('div');
+  star.className = 'star';
+  let size = Math.random() * 3 + 1;
+  star.style.width = size + 'px';
+  star.style.height = size + 'px';
+  star.style.top = Math.random() * window.innerHeight + 'px';
+  star.style.left = Math.random() * window.innerWidth + 'px';
+  document.body.appendChild(star);
 }
-
-loadTiers();
 </script>
 
 </body>
